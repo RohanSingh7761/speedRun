@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227820911915",
+    "project_id": "speedrun-d4094",
+    "storage_bucket": "speedrun-d4094.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227820911915:android:53a0a1c75700ad60f9d96e",
+        "android_client_info": {
+          "package_name": "com.example.speed_run"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC627H-UVaokz9Y64GUp-LiHhybHGbcRoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
