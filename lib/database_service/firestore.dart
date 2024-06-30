@@ -1,12 +1,42 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
-  //instance
-  
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //*get
+  final CollectionReference notes =
+      FirebaseFirestore.instance.collection("Notes");
 
-  //get
+  //*CREATE
+  Future<DocumentReference<Object?>> addNotes(String note) async {
+    final User? user = _auth.currentUser;
+    return notes.add({
+      'note': note,
+      'timestamp': Timestamp.now(),
+      'userID': user!.uid,
+    });
+  }
 
-  //add
+  //*READ
+  Stream<QuerySnapshot<Object?>> getNotes() {
+    final User? user = _auth.currentUser;
+    final notesStream = notes
+        .where('userID', isEqualTo: user!.uid)
+        .orderBy('timestamp', descending: true)
+        .snapshots();
+    return notesStream;
+  }
 
-  //delete
+  //*UPDATE
+  Future<void> updateNotes(String docID, String newNote) async {
+    return notes.doc(docID).update({
+      'note': newNote,
+      'timestamp': Timestamp.now(),
+    });
+  }
+
+  //*DELETE
+  Future<void> deleteNote(String docID) async {
+    return notes.doc(docID).delete();
+  }
 }
